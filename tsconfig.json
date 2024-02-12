@@ -21,7 +21,12 @@
         "name": "next"
       }
     ],
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/styles/*": ["styles/*"], //stylesフォルダのエイリアスを追加
+      "@/utils/*": ["utils/*"] //utilsフォルダの追加
+    }
   },
   "include": [
     "next-env.d.ts",
