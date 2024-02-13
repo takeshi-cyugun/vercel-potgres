@@ -9,7 +9,9 @@ export async function GET(request: Request) {
   const rows = await sql`
     select * from (
       select 
-        p.id          as player_id
+        t.id          as team_id
+      , t.name        as team_name
+      , p.id          as player_id
       , p.grade       as grade
       , p.feature     as feature 
       , p.techniques  as techniques 
@@ -30,7 +32,9 @@ export async function GET(request: Request) {
     union 
       
       select 
-        p.id          as player_id
+        t.id          as team_id
+      , t.name        as team_name
+      , p.id          as player_id
       , p.grade       as grade
       , p.feature     as feature 
       , p.techniques  as techniques 
