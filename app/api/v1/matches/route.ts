@@ -2,7 +2,7 @@ import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
  
 export async function GET(request: Request) {
-
+  console.log('[GET]/matches')
   const rows = await sql`
     select 
         e.id       as event_id   
@@ -24,7 +24,7 @@ export async function GET(request: Request) {
       on m.teama_id = ta.id
     inner join teams tb
       on m.teamb_id = tb.id
-    inner join (
+    left join (
       select 
           match_id
         , team_id
@@ -36,7 +36,7 @@ export async function GET(request: Request) {
       ) ca
       on ca.match_id = m.id
       and ca.team_id = ta.id
-      inner join (
+    left join (
       select 
           match_id
         , team_id
@@ -54,9 +54,7 @@ export async function GET(request: Request) {
 }
   
 export async function POST(request: Request) {
-
-  console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
-
+  console.log('[POST]/matches')
   const reqBody = await request.json();
 
   const event_id = reqBody.event_id ? reqBody.event_id : null ;
@@ -64,32 +62,23 @@ export async function POST(request: Request) {
   const coat = reqBody.coat ? reqBody.coat : 0;
   const teamA_id = reqBody.teamA_id ? reqBody.teamA_id : null;
   const teamB_id = reqBody.teamB_id ? reqBody.teamB_id : null;
-  console.log('teamB_id: ', teamB_id);
-  console.log('coat: ', coat);
-  console.log('round: ', round);
 
-
-  if (!teamA_id || !teamB_id) {
-    throw new Error('チームIDは必須です');
-  }
+  if (!teamA_id || !teamB_id) { throw new Error('チームIDは必須です');}
   
   try {
-
     const { rows } = await sql`
     INSERT INTO matches (event_id, round, coat, teamA_id, teamB_id)
     VALUES (${event_id}, ${round}, ${coat}, ${teamA_id}, ${teamB_id})
     RETURNING id;
     `;
-
     return NextResponse.json( rows[0], { status: 200 });
-
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
 }
 
 export async function DELETE(request: Request) {
-  console.log('matches DELETEDELETEDELETEDELETEDELETE')
+  console.log('[DELETE]/matches')
   try {
     await sql`DELETE FROM matches;`;
     return NextResponse.json( { result: "OK"}, { status: 200 });

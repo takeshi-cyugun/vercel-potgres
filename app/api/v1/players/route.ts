@@ -2,6 +2,7 @@ import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
  
 export async function GET(request: Request) {
+  console.log('[GET]/players')
   const { searchParams } = new URL(request.url);
   const season = searchParams.get('season');
   const where = (season) ? `where season = ${season};` : ''
@@ -13,6 +14,7 @@ export async function GET(request: Request) {
 
 // export async function POST(request: Request, { params }: { params: { id: string } },) {
 export async function POST(request: Request) {
+  console.log('[POST]/players')
   const reqBody = await request.json();
   console.log('reqBody: ', reqBody);
 
@@ -24,12 +26,8 @@ export async function POST(request: Request) {
   // const strong_weak: string | null = (reqBody.strong_weak) ? reqBody.strong_weak : null
   // const level: number | null = (reqBody.level) ? reqBody.level : null
   // const win: string | null = (reqBody.win) ? reqBody.win : null
-  console.log('GGGGGGGGGGGG')
 
   const players = [reqBody.player.A, reqBody.player.B]
-
-
-
 
   try {
     if (!reqBody.match_id) throw new Error('match_id is required');
@@ -55,9 +53,4 @@ export async function POST(request: Request) {
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
-
-
-
-  // return NextResponse.json({ "param": id }, { status: 200 });
-
 }

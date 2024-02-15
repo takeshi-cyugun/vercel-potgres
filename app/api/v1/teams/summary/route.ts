@@ -2,6 +2,7 @@ import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
  
 export async function GET(request: Request) {
+  console.log('[GET]/teams/summary')
   const { searchParams } = new URL(request.url);
   const event_id = searchParams.get('event_id');
   const team_id = searchParams.get('team_id');
