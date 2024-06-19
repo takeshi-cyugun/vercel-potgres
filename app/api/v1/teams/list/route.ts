@@ -19,7 +19,7 @@ export async function GET(request: Request) {
     where_team_id_b = "where tb.id = " + team_id
   }
 
-  const rows = await sql`
+  const { rows, rowCount } = await sql`
   
     select * from (
         select 
@@ -73,7 +73,7 @@ export async function GET(request: Request) {
     order by 1,3;
   `;
   // console.log('rows: ', rows.rows );
-  return NextResponse.json( rows.rows , { status: 200 });
+  return NextResponse.json( rows , { status: 200 });
 
 }
 

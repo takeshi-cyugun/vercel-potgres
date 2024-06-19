@@ -14,7 +14,7 @@ export async function DELETE(request: Request) {
 
 export async function GET(request: Request) {
 
-  const rows = await sql`
+  const { rows, rowCount } = await sql`
   
 
   select 
@@ -62,7 +62,7 @@ export async function GET(request: Request) {
   
 ;`;
 
-  return NextResponse.json( rows.rows , { status: 200 });
+  return NextResponse.json( rows , { status: 200 });
 }
 
 

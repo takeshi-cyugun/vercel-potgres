@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
  
 export async function GET(request: Request) {
   console.log('[GET]/matches')
-  const rows = await sql`
+  const { rows, rowCount } = await sql`
     select 
         e.id       as event_id   
       , e.season   as season
@@ -50,7 +50,7 @@ export async function GET(request: Request) {
     and cb.team_id = tb.id
   ;`;
 
-  return NextResponse.json( rows.rows, { status: 200 });
+  return NextResponse.json( rows, { status: 200 });
 }
   
 export async function POST(request: Request) {
@@ -79,8 +79,9 @@ export async function POST(request: Request) {
 
 export async function DELETE(request: Request) {
   console.log('[DELETE]/matches')
+  // console.log('matches DELETEDELETEDELETEDELETEDELETE')
   try {
-    await sql`DELETE FROM matches;`;
+    await sql`DELETE FROM matches where lock_flg is null;`;
     return NextResponse.json( { result: "OK"}, { status: 200 });
   
   } catch (error) {

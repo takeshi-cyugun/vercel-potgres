@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   const match_id = searchParams.get('match_id');
   const team_id = searchParams.get('team_id');
 
-  const rows = await sql`
+  const { rows, rowCount } = await sql`
     select * from (
       select 
         t.id          as team_id
@@ -56,7 +56,7 @@ export async function GET(request: Request) {
     order by 2
   `;
 
-  return NextResponse.json( rows.rows , { status: 200 });
+  return NextResponse.json( rows , { status: 200 });
 }
 
 

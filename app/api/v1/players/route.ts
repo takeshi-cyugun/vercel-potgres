@@ -54,3 +54,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error }, { status: 500 });
   }
 }
+
+export async function DELETE(request: Request) {
+  console.log('[DELETE]/players')
+  // console.log('players DELETEDELETEDELETEDELETEDELETE')
+  try {
+    await sql`DELETE FROM players where lock_flg is null;`;
+    return NextResponse.json( { result: "OK"}, { status: 200 });
+  
+  } catch (error) {
+    return NextResponse.json({ error }, { status: 500 });
+  }
+}
