@@ -15,6 +15,10 @@ export async function GET(request: Request) {
       , p.id          as player_id
       , p.grade       as grade
       , p.feature     as feature 
+      , p.clothing    as clothing
+      , p.hairstyle   as hairstyle
+      , p.shoes       as shoes
+      , p.nickname    as nickname
       , p.techniques  as techniques 
       , p.strong_weak as strong_weak
       , p.level       as level
@@ -37,7 +41,11 @@ export async function GET(request: Request) {
       , t.name        as team_name
       , p.id          as player_id
       , p.grade       as grade
-      , p.feature     as feature 
+      , p.feature     as feature
+      , p.clothing    as clothing
+      , p.hairstyle   as hairstyle
+      , p.shoes       as shoes
+      , p.nickname    as nickname
       , p.techniques  as techniques 
       , p.strong_weak as strong_weak
       , p.level       as level

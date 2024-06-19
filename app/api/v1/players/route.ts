@@ -43,9 +43,9 @@ export async function POST(request: Request) {
 
 
       return await sql`
-      INSERT INTO players (season, team_id, match_id, grade, feature, strong_weak, level, win) VALUES 
+      INSERT INTO players (season, team_id, match_id, grade, feature, strong_weak, level, win, clothing, hairstyle, shoes, nickname) VALUES 
         (${season}, ${player.team_id}, ${match_id}, ${grade}, ${player.Feature}, ${player.StrongWeak}, 
-          ${player.Level}, ${player.win}) RETURNING id;`;
+          ${player.Level}, ${player.win}, ${player.clothing}, ${player.hairstyle}, ${player.shoes}, ${player.nickname} ) RETURNING id;`;
     }));
     // console.log('result: ', result);
   
