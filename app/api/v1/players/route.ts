@@ -55,11 +55,14 @@ export async function POST(request: Request) {
   }
 }
 
+/**
+ * 選手情報を全削除（管理者画面）
+ */
 export async function DELETE(request: Request) {
   console.log('[DELETE]/players')
   // console.log('players DELETEDELETEDELETEDELETEDELETE')
   try {
-    await sql`DELETE FROM players where lock_flg is null;`;
+    await sql`DELETE FROM players where lock_flag is null;`;
     return NextResponse.json( { result: "OK"}, { status: 200 });
   
   } catch (error) {

@@ -1,17 +1,6 @@
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
  
-export async function DELETE(request: Request) {
-  console.log('matches DELETEDELETEDELETEDELETEDELETE')
-  try {
-    await sql`DELETE FROM players;`;
-    return NextResponse.json( { result: "OK"}, { status: 200 });
-  
-  } catch (error) {
-    return NextResponse.json({ error }, { status: 500 });
-  }
-}
-
 export async function GET(request: Request) {
 
   const { rows, rowCount } = await sql`

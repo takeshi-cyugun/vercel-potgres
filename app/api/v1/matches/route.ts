@@ -77,6 +77,9 @@ export async function POST(request: Request) {
   }
 }
 
+/**
+ * 試合情報を全削除（管理者画面）
+ */
 export async function DELETE(request: Request) {
   console.log('[DELETE]/matches')
   // console.log('matches DELETEDELETEDELETEDELETEDELETE')
