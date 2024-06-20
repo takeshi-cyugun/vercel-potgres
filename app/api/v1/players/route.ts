@@ -22,11 +22,9 @@ export async function POST(request: Request) {
   const match_id: number | null = (reqBody.match_id) ? reqBody.match_id : null
   const grade: string | null = (reqBody.grade) ? reqBody.grade : null
   // const feature: string | null = (reqBody.feature) ? reqBody.feature : null
-  // const technique: string[] | null = (reqBody.technique) ? reqBody.technique : null
   // const strong_weak: string | null = (reqBody.strong_weak) ? reqBody.strong_weak : null
   // const level: number | null = (reqBody.level) ? reqBody.level : null
   // const win: string | null = (reqBody.win) ? reqBody.win : null
-
 
   const players = [reqBody.player.A, reqBody.player.B]
 
@@ -41,7 +39,7 @@ export async function POST(request: Request) {
       //   (${season}, ${player.team_id}, ${match_id}, ${grade}, ${player.Feature}, ${player.StrongWeak}, ${player.Level}, ${player.win}) RETURNING id;`;
 
       // console.log('aaa: ', aaa);
-      console.log('technique: ', player.technique);
+      // console.log('technique: ', player.technique);
 
       const technique = player.technique.join(",")
 
