@@ -61,7 +61,7 @@ export async function GET(request: Request) {
       where t.id = ${team_id}
       and m.id = ${match_id}
     ) A
-    order by 2
+    order by grade, player_id
   `;
 
   return NextResponse.json( rows , { status: 200 });
