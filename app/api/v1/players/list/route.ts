@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server';
 export async function GET(request: Request) {
   console.log('[GET]/players/list')
   const { searchParams } = new URL(request.url);
+  const event_id = searchParams.get('event_id');
   const match_id = searchParams.get('match_id');
   const team_id = searchParams.get('team_id');
 
@@ -33,7 +34,8 @@ export async function GET(request: Request) {
         inner join players p
         on p.team_id = t.id
         and m.id = p.match_id
-        where t.id = ${team_id}
+        where m.event_id = ${event_id}
+        and t.id = ${team_id}
         and m.id = ${match_id}
 
       union 
@@ -60,7 +62,8 @@ export async function GET(request: Request) {
         inner join players p
         on p.team_id = t.id
         and m.id = p.match_id
-        where t.id = ${team_id}
+        where m.event_id = ${event_id}
+        and t.id = ${team_id}
         and m.id = ${match_id}
       ) A
       order by grade, player_id
@@ -94,7 +97,8 @@ export async function GET(request: Request) {
         inner join players p
         on p.team_id = t.id
         and m.id = p.match_id
-        where t.id = ${team_id}
+        where m.event_id = ${event_id}
+        and t.id = ${team_id}
 
       union 
         
@@ -120,7 +124,8 @@ export async function GET(request: Request) {
         inner join players p
         on p.team_id = t.id
         and m.id = p.match_id
-        where t.id = ${team_id}
+        where m.event_id = ${event_id}
+        and t.id = ${team_id}
       ) A
       order by grade, player_id
     `;
