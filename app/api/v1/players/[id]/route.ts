@@ -1,6 +1,12 @@
-// 選手情報更新
 import { sql } from '@vercel/postgres';
 import { NextResponse } from 'next/server';
+
+export async function GET(request: Request, { params }: { params: { id: number } }) {
+  console.log('[GET]/players/[id]')
+  const result = ''
+  return NextResponse.json(result, { status: 200 });
+}
+
 
 export async function PUT(request: Request, { params }: { params: { id: number } }) {
   console.log('[PUT]/players/[id]')
@@ -24,5 +30,3 @@ export async function PUT(request: Request, { params }: { params: { id: number }
     return NextResponse.json({ error }, { status: 500 });
   }
 }
-
-
