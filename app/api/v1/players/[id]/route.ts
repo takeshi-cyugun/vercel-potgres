@@ -15,6 +15,7 @@ export async function PUT(request: Request, { params }: { params: { id: number }
   const reqBody = await request.json();
   const level: string | null = (reqBody.level) ? reqBody.level : null
   const strong_weak: string | null = (reqBody.strong_weak) ? reqBody.strong_weak : null
+  const ai_advice: string | null = (reqBody.ai_advice) ? reqBody.ai_advice : null
 
   if (!id) return new NextResponse("Player ID is required", { status: 400 });
 
@@ -24,6 +25,7 @@ export async function PUT(request: Request, { params }: { params: { id: number }
     UPDATE players 
     SET level = ${level} 
       , strong_weak = ${strong_weak} 
+      , ai_advice = ${ai_advice}
     WHERE id = ${id};`;
     return NextResponse.json({ result: "OK" }, { status: 200 });
   } catch (error) {

@@ -17,7 +17,6 @@ export async function GET(request: Request) {
         , t.name        as team_name
         , p.id          as player_id
         , p.grade       as grade
-        , p.feature     as feature 
         , p.clothing    as clothing
         , p.hairstyle   as hairstyle
         , p.shoes       as shoes
@@ -26,6 +25,7 @@ export async function GET(request: Request) {
         , p.strong_weak as strong_weak
         , p.level       as level
         , p.win         as win
+        , p.ai_advice   as ai_advice
         , m.strategyA   as strategy
         , 'A'           as position
       from matches m
@@ -45,7 +45,6 @@ export async function GET(request: Request) {
         , t.name        as team_name
         , p.id          as player_id
         , p.grade       as grade
-        , p.feature     as feature
         , p.clothing    as clothing
         , p.hairstyle   as hairstyle
         , p.shoes       as shoes
@@ -54,6 +53,7 @@ export async function GET(request: Request) {
         , p.strong_weak as strong_weak
         , p.level       as level
         , p.win         as win
+        , p.ai_advice   as ai_advice
         , m.strategyB   as strategy
         , 'B'           as position
       from matches m
@@ -80,7 +80,6 @@ export async function GET(request: Request) {
         , t.name        as team_name
         , p.id          as player_id
         , p.grade       as grade
-        , p.feature     as feature 
         , p.clothing    as clothing
         , p.hairstyle   as hairstyle
         , p.shoes       as shoes
@@ -89,6 +88,7 @@ export async function GET(request: Request) {
         , p.strong_weak as strong_weak
         , p.level       as level
         , p.win         as win
+        , p.ai_advice   as ai_advice
         , m.strategyA   as strategy
         , 'A'           as position
       from matches m
@@ -107,7 +107,6 @@ export async function GET(request: Request) {
         , t.name        as team_name
         , p.id          as player_id
         , p.grade       as grade
-        , p.feature     as feature
         , p.clothing    as clothing
         , p.hairstyle   as hairstyle
         , p.shoes       as shoes
@@ -116,6 +115,7 @@ export async function GET(request: Request) {
         , p.strong_weak as strong_weak
         , p.level       as level
         , p.win         as win
+        , p.ai_advice   as ai_advice
         , m.strategyB   as strategy
         , 'B'           as position
       from matches m

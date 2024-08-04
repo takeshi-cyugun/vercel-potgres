@@ -21,7 +21,6 @@ export async function POST(request: Request) {
   const season: number | null = (reqBody.season) ? reqBody.season : null
   const match_id: number | null = (reqBody.match_id) ? reqBody.match_id : null
   const grade: string | null = (reqBody.grade) ? reqBody.grade : null
-  // const feature: string | null = (reqBody.feature) ? reqBody.feature : null
   // const strong_weak: string | null = (reqBody.strong_weak) ? reqBody.strong_weak : null
   // const level: number | null = (reqBody.level) ? reqBody.level : null
   // const win: string | null = (reqBody.win) ? reqBody.win : null
@@ -35,8 +34,8 @@ export async function POST(request: Request) {
 
       // console.log('player: ', player);
       // const aaa = `
-      // INSERT INTO players (season, team_id, match_id, grade, feature, strong_weak, level, win) VALUES 
-      //   (${season}, ${player.team_id}, ${match_id}, ${grade}, ${player.Feature}, ${player.StrongWeak}, ${player.Level}, ${player.win}) RETURNING id;`;
+      // INSERT INTO players (season, team_id, match_id, grade, strong_weak, level, win) VALUES 
+      //   (${season}, ${player.team_id}, ${match_id}, ${grade}, ${player.StrongWeak}, ${player.Level}, ${player.win}) RETURNING id;`;
 
       // console.log('aaa: ', aaa);
       // console.log('technique: ', player.technique);
@@ -44,8 +43,8 @@ export async function POST(request: Request) {
       const technique = player.technique.join(",")
 
       return await sql`
-      INSERT INTO players (season, team_id, match_id, grade, feature, techniques, strong_weak, level, win, clothing, hairstyle, shoes, nickname) VALUES 
-        (${season}, ${player.team_id}, ${match_id}, ${grade}, ${player.Feature}, ${technique}, ${player.StrongWeak}, 
+      INSERT INTO players (season, team_id, match_id, grade, techniques, strong_weak, level, win, clothing, hairstyle, shoes, nickname) VALUES 
+        (${season}, ${player.team_id}, ${match_id}, ${grade}, ${technique}, ${player.StrongWeak}, 
           ${player.Level}, ${player.win}, ${player.clothing}, ${player.hairstyle}, ${player.shoes}, ${player.nickname} ) RETURNING id;`;
     }));
     // console.log('result: ', result);
@@ -63,7 +62,7 @@ export async function DELETE(request: Request) {
   console.log('[DELETE]/players')
   // console.log('players DELETEDELETEDELETEDELETEDELETE')
   try {
-    await sql`DELETE FROM players where lock_flag is null;`;
+    await sql`DELETE FROM players where lock_flg is null;`;
     return NextResponse.json( { result: "OK"}, { status: 200 });
   
   } catch (error) {
