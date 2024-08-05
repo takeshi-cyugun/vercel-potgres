@@ -13,7 +13,7 @@ export async function PUT(request: Request, { params }: { params: { id: number }
   const id = params.id;
 
   const reqBody = await request.json();
-  const level: string | null = (reqBody.level) ? reqBody.level : null
+  const level: string | null = (reqBody.level !== null) ? reqBody.level : null
   const strong_weak: string | null = (reqBody.strong_weak) ? reqBody.strong_weak : null
   const ai_advice: string | null = (reqBody.ai_advice) ? reqBody.ai_advice : null
 
