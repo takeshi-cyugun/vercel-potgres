@@ -8,6 +8,7 @@ export async function GET(request: Request) {
   const { rows, rowCount } = await sql`
     select 
       id
+    , content_id
     , url
     , title
     , detail
