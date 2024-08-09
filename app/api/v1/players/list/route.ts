@@ -27,6 +27,7 @@ export async function GET(request: Request) {
         , p.win         as win
         , p.ai_advice   as ai_advice
         , m.strategyA   as strategy
+        , m.youtube_url as youtube_url
         , 'A'           as position
       from matches m
         inner join teams t
@@ -55,6 +56,7 @@ export async function GET(request: Request) {
         , p.win         as win
         , p.ai_advice   as ai_advice
         , m.strategyB   as strategy
+        , m.youtube_url as youtube_url
         , 'B'           as position
       from matches m
         inner join teams t
@@ -90,6 +92,7 @@ export async function GET(request: Request) {
         , p.win         as win
         , p.ai_advice   as ai_advice
         , m.strategyA   as strategy
+        , m.youtube_url as youtube_url
         , 'A'           as position
       from matches m
         inner join teams t
@@ -117,6 +120,7 @@ export async function GET(request: Request) {
         , p.win         as win
         , p.ai_advice   as ai_advice
         , m.strategyB   as strategy
+        , m.youtube_url as youtube_url
         , 'B'           as position
       from matches m
         inner join teams t

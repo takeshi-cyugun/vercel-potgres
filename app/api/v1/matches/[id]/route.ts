@@ -23,6 +23,7 @@ export async function GET(request: Request, { params }: { params: { id: number }
     , B.text_color_code   AS teamB_text_color_code
     , m.strategyb         AS teamb_strategy
     , m.win               AS win
+    , m.youtube_url       AS youtube_url
     FROM matches m
     LEFT JOIN teams A
     ON m.Teama_id = A.id
@@ -56,7 +57,8 @@ export async function GET(request: Request, { params }: { params: { id: number }
       },
       strategy: rows.rows[0].teamb_strategy,
     },
-    win: rows.rows[0].win
+    win: rows.rows[0].win,
+    youtubeUrl: rows.rows[0].youtube_url
   }
   console.log('result', result)
   return NextResponse.json(result, { status: 200 });
@@ -71,6 +73,7 @@ export async function PUT(request: Request, { params }: { params: { id: number }
   const win: string | null = (reqBody.win) ? reqBody.win : null
   const strategyA: string | null = (reqBody.strategyA) ? reqBody.strategyA : null
   const strategyB: string | null = (reqBody.strategyB) ? reqBody.strategyB : null
+  const youtubeUrl: string | null = (reqBody.youtubeUrl) ? reqBody.youtubeUrl : null
 
   if (!id) return new NextResponse("User ID is required", { status: 400 });
   if (!win) return new NextResponse("Win ID is required", { status: 400 });
@@ -81,6 +84,7 @@ export async function PUT(request: Request, { params }: { params: { id: number }
     SET win = ${win} 
       , strategyA = ${strategyA} 
       , strategyB = ${strategyB} 
+      , youtube_url = ${youtubeUrl} 
     WHERE id = ${id};`;
     return NextResponse.json({ result: "OK" }, { status: 200 });
   } catch (error) {
